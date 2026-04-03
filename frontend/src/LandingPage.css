@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+.landing-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+/* Navbar Segment */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  background-color: #fff9f9;
+  border-bottom: 1px solid #f2ecec;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ff3b3f;
+  letter-spacing: -1px;
+}
+.logo-text.slim {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.nav-link.active, .nav-link:hover {
+  background-color: #c9e6ff;
+  color: #1a1a1a;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-outline {
+  border: 1px solid #ccc;
+  background: transparent;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: #333;
+  color: #333;
+}
+
+.btn-solid {
+  background: #ff3b3f;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 59, 63, 0.2);
+  transition: all 0.2s;
+}
+
+.btn-solid:hover {
+  background: #e63538;
+  transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #8c8c8c;
+  color: white;
+  padding: 80px 100px 100px;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: 'Merriweather', serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 60px;
+  max-width: 600px;
+  color: #f0f0f0;
+}
+
+.search-bar {
+  background: #e8e8e8;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.search-field.flex-2 {
+  flex: 2;
+}
+
+.search-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 6px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-field input, .search-field select {
+  height: 50px;
+  border: none;
+  background: #d4d4d4;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-field input:focus, .search-field select:focus {
+  outline: 2px solid #aaa;
+}
+
+.btn-search {
+  height: 50px;
+  background: #d4d4d4;
+  border: none;
+  padding: 0 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-search:hover {
+  background: #c0c0c0;
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 100px;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Merriweather', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.section-title.left-align {
+  text-align: left;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+.section-subtitle.left-align {
+  text-align: left;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #e8e8e8;
+  padding: 40px 30px;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+/* Listings Section */
+.listings-section {
+  padding: 20px 100px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.listing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+
+.listing-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.listing-image {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee;
+}
+
+.listing-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.listing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.listing-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  color: #222;
+}
+
+.rating {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f5a623;
+}
+
+.location {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.amenities {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 16px;
+}
+
+.listing-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price {
+  font-weight: 700;
+  color: #222;
+  font-size: 15px;
+}
+
+.landlord {
+  font-size: 10px;
+  color: #888;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  background: #fff9f9;
+  border-top: 1px solid #f2ecec;
+}
+
+.copy-text {
+  font-size: 13px;
+  color: #777;
+}
+
+/* Auth Additions */
+.auth-back {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+}
+.auth-back:hover {
+  text-decoration: underline;
+}

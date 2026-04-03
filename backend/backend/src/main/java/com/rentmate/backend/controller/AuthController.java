@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
@@ -46,19 +46,24 @@ public class AuthController {
             String password = clean(payload.get("password"));
 
             if (isBlank(firstname) || isBlank(lastname) || isBlank(email) || isBlank(password)) {
-                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Firstname, lastname, email, and password are required.");
+                Map<String, String> details = new LinkedHashMap<>();
+                if (isBlank(firstname)) details.put("firstname", "Firstname is required");
+                if (isBlank(lastname)) details.put("lastname", "Lastname is required");
+                if (isBlank(email)) details.put("email", "Email is required");
+                if (isBlank(password)) details.put("password", "Password is required");
+                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Validation failed", details);
             }
 
             if (!isValidEmail(email)) {
-                return buildError(HttpStatus.BAD_REQUEST, "VALID-002", "Please enter a valid email address.");
+                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Validation failed", Map.of("email", "Please enter a valid email address."));
             }
 
             if (password.length() < 8) {
-                return buildError(HttpStatus.BAD_REQUEST, "VALID-003", "Password must be at least 8 characters.");
+                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Validation failed", Map.of("password", "Must be at least 8 characters"));
             }
 
             if (userRepository.existsByEmail(email)) {
-                return buildError(HttpStatus.CONFLICT, "DB-002", "Email already exists.");
+                return buildError(HttpStatus.CONFLICT, "DB-002", "Duplicate entry", "Email already exists");
             }
 
             User user = new User();
@@ -84,7 +89,7 @@ public class AuthController {
             return buildSuccess(HttpStatus.CREATED, data);
 
         } catch (Exception e) {
-            return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "SYSTEM-001", "An unexpected error occurred.");
+            return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "SYSTEM-001", "Internal server error", "An unexpected error occurred.");
         }
     }
 
@@ -95,19 +100,22 @@ public class AuthController {
             String password = clean(payload.get("password"));
 
             if (isBlank(email) || isBlank(password)) {
-                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Email and password are required.");
+                Map<String, String> details = new LinkedHashMap<>();
+                if (isBlank(email)) details.put("email", "Email is required");
+                if (isBlank(password)) details.put("password", "Password is required");
+                return buildError(HttpStatus.BAD_REQUEST, "VALID-001", "Validation failed", details);
             }
 
             Optional<User> userOptional = userRepository.findByEmail(email);
 
             if (userOptional.isEmpty()) {
-                return buildError(HttpStatus.UNAUTHORIZED, "AUTH-001", "Invalid credentials.");
+                return buildError(HttpStatus.UNAUTHORIZED, "AUTH-001", "Invalid credentials", "Email or password is incorrect");
             }
 
             User user = userOptional.get();
 
             if (!passwordEncoder.matches(password, user.getPasswordHash())) {
-                return buildError(HttpStatus.UNAUTHORIZED, "AUTH-001", "Invalid credentials.");
+                return buildError(HttpStatus.UNAUTHORIZED, "AUTH-001", "Invalid credentials", "Email or password is incorrect");
             }
 
             String accessToken = generateToken(user, 1, ChronoUnit.DAYS, "access");
@@ -123,7 +131,7 @@ public class AuthController {
             return buildSuccess(HttpStatus.OK, data);
 
         } catch (Exception e) {
-            return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "SYSTEM-001", "An unexpected error occurred.");
+            return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "SYSTEM-001", "Internal server error", "An unexpected error occurred.");
         }
     }
 
@@ -169,20 +177,21 @@ public class AuthController {
         response.put("success", true);
         response.put("data", data);
         response.put("error", null);
-        response.put("timestamp", LocalDateTime.now());
+        response.put("timestamp", Instant.now().toString());
         return ResponseEntity.status(status).body(response);
     }
 
-    private ResponseEntity<Map<String, Object>> buildError(HttpStatus status, String code, String message) {
+    private ResponseEntity<Map<String, Object>> buildError(HttpStatus status, String code, String message, Object details) {
         Map<String, Object> error = new LinkedHashMap<>();
         error.put("code", code);
         error.put("message", message);
+        error.put("details", details);
 
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("success", false);
         response.put("data", null);
         response.put("error", error);
-        response.put("timestamp", LocalDateTime.now());
+        response.put("timestamp", Instant.now().toString());
 
         return ResponseEntity.status(status).body(response);
     }
