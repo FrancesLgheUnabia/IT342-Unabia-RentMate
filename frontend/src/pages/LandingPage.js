@@ -26,8 +26,8 @@ function LandingPage() {
             <span className="logo-text">Rentmate</span>
           </div>
           <div className="nav-links">
-            <a href="/" className="nav-link active">HOME</a>
-            <a href="#!" className="nav-link">BROWSE</a>
+            <a href="/" className="nav-link active" onClick={(e) => { e.preventDefault(); navigate("/"); }}>HOME</a>
+            <a href="/browse" className="nav-link" onClick={(e) => { e.preventDefault(); navigate("/browse"); }}>BROWSE</a>
           </div>
         </div>
         <div className="navbar-right">

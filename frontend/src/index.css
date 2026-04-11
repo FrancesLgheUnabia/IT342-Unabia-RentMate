@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Outfit', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  background-color: #fcfcfd;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
 .auth-page {
   min-height: 100vh;
   background: #ece8e8;
@@ -24,6 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: smoothFadeIn 0.35s ease-out forwards;
 }
 
 .auth-right {
@@ -33,6 +45,12 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
+  animation: smoothFadeIn 0.35s ease-out forwards;
+}
+
+@keyframes smoothFadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .auth-right-left {

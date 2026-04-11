@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const navigate = useNavigate();
 
   const [signupData, setSignupData] = useState({
@@ -35,6 +36,9 @@ function AuthPage() {
   };
 
   const closePopup = () => {
+    if (popup.title === "Registration Successful") {
+      setIsLogin(true);
+    }
     setPopup({
       show: false,
       title: "",
@@ -87,13 +91,9 @@ function AuthPage() {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        localStorage.setItem("accessToken", result.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.refreshToken);
-        localStorage.setItem("user", JSON.stringify(result.data.user));
-
         showPopup(
           "Registration Successful",
-          "You have successfully registered and logged in."
+          "You have successfully registered. Please sign in to continue."
         );
 
         setSignupData({
@@ -143,7 +143,10 @@ function AuthPage() {
         localStorage.setItem("refreshToken", result.data.refreshToken);
         localStorage.setItem("user", JSON.stringify(result.data.user));
 
-        showPopup("Login Successful", "You have successfully logged in.");
+        setIsExiting(true);
+        setTimeout(() => {
+          navigate("/marketplace");
+        }, 500);
 
         setLoginData({
           email: "",
@@ -167,7 +170,7 @@ function AuthPage() {
 
   return (
     <>
-      <div className="auth-page">
+      <div className={`auth-page ${isExiting ? 'fade-out-exit' : ''}`}>
         <div className="auth-back" onClick={() => navigate("/")}>
           &larr; Back to Home
         </div>
