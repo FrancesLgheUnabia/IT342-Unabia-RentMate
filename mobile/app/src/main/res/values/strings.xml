@@ -1,0 +1,8 @@
+<resources>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="mobile_or_email">Mobile Number or Email Address</string>
+    <string name="password">Password</string>
+    <string name="app_name">Rentmate</string>
+</resources>
+
