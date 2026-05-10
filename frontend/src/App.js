@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AuthPage from "./pages/AuthPage";
-import LandingPage from "./pages/LandingPage";
-import BrowsePage from "./pages/BrowsePage";
-import MarketplacePage from "./pages/MarketplacePage";
-import ListingDetailsPage from "./pages/ListingDetailsPage";
+import AuthPage from "./features/authentication/pages/AuthPage";
+import LandingPage from "./features/home/pages/LandingPage";
+import BrowsePage from "./features/listing/pages/BrowsePage";
+import MarketplacePage from "./features/listing/pages/MarketplacePage";
+import ListingDetailsPage from "./features/listing/pages/ListingDetailsPage";
 
 function App() {
   return (
