@@ -13,11 +13,11 @@ The project is structured into three main components:
 ## 🛠️ Technologies Used
 | Component | Technology |
 | :--- | :--- |
-| **Backend** | Python, Django / Django REST Framework |
-| **Database** | PostgreSQL / SQLite |
+| **Backend** | Springboot, Django / Django REST Framework |
+| **Database** | Supabase |
 | **Web** | React.js, HTML5, CSS3 |
 | **Mobile** | React Native / Flutter *(Update this based on your stack)* |
-| **Tools** | Git, VS Code, Postman |
+| **Tools** | Git, VS Code |
 
 ---
 
